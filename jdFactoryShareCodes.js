@@ -8,8 +8,7 @@
 // 如: 京东账号1的shareCode1@京东账号1的shareCode2&京东账号2的shareCode1@京东账号2的shareCode2
 let shareCodes = [
   'T020a3T3lZedI_hu9Y5jTXaGCjVWnYaS5kRrbA
-',//账号一的好友shareCode,不同好友中间用@符号隔开
-  'T0205KkcKFlglieldHiB949xCjVWnYaS5kRrbA',//账号二的好友shareCode，不同好友中间用@符号隔开
+'&'T0205KkcKFlglieldHiB949xCjVWnYaS5kRrbA',
 ]
 // 判断github action里面是否有东东工厂互助码
 if (process.env.DDFACTORY_SHARECODES) {
