@@ -633,62 +633,6 @@ function submitInviteId(userName) {
   });
 }
 
-//随机超级助力好友
-function createSuperAssistUser() {
-  return new Promise(resolve => {
-    const sceneIds = Object.keys($.info.SceneList);
-    const sceneId = Math.min(...sceneIds);
-    $.get({ url: 'https://api.ninesix.cc/api/jx-cfd' }, async (err, resp, _data) => {
-      try {
-        const { data = {} } = JSON.parse(_data);
-        $.log(`\n【👫🏻超级助力】超级助力码：${data.value}\n${$.showLog ? _data : ''}`);
-        $.get(taskUrl('user/JoinScene', `strPgtimestamp=${$.currentToken['timestamp']}&strPhoneID=${$.currentToken['phoneid']}&strPgUUNum=${$.currentToken['farm_jstoken']}&strShareId=${escape(data.value)}&dwSceneId=${sceneId}&dwType=2`), async (err, resp, data) => {
-          try {
-            const { sErrMsg, data: { rewardMoney = 0 } = {} } = JSON.parse(data);
-            $.log(`\n【👫🏻超级助力】超级助力：${sErrMsg}\n${$.showLog ? data : ''}`);
-          } catch (e) {
-            $.logErr(e, resp);
-          } finally {
-            resolve();
-          }
-        });
-      } catch (e) {
-        $.logErr(e, resp);
-      } finally {
-        resolve();
-      }
-    });
-  });
-}
-
-//随机助力好友
-function createAssistUser() {
-  return new Promise(resolve => {
-    const sceneIds = Object.keys($.info.SceneList);
-    const sceneId = Math.min(...sceneIds);
-    $.get({ url: 'https://api.ninesix.cc/api/jx-cfd' }, async (err, resp, _data) => {
-      try {
-        const { data = {} } = JSON.parse(_data);
-        $.log(`\n【👬普通助力】普通助力码：${data.value}\n${$.showLog ? _data : ''}`);
-        $.get(taskUrl('user/JoinScene', `strShareId=${escape(data.value)}&dwSceneId=${sceneId}`), async (err, resp, data) => {
-          try {
-            const { sErrMsg, data: { rewardMoney = 0 } = {} } = JSON.parse(data);
-            $.log(`\n【👬普通助力】助力：${sErrMsg}\n${$.showLog ? data : ''}`);
-          } catch (e) {
-            $.logErr(e, resp);
-          } finally {
-            resolve();
-          }
-        });
-      } catch (e) {
-        $.logErr(e, resp);
-      } finally {
-      	resolve();
-      }
-    });
-  });
-}
-
 //提交互助码
 function submitGroupId() {
   return new Promise(resolve => {
